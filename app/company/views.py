@@ -1,12 +1,17 @@
-from rest_framework import generics, viewsets, mixins
-from rest_framework import filters
 from django.db.models import Sum, Count
+
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import ListAPIView
+from rest_framework.viewsets import GenericViewSet
+from rest_framework.mixins import ListModelMixin, DestroyModelMixin, CreateModelMixin
+from rest_framework.filters import SearchFilter
+from rest_framework.pagination import LimitOffsetPagination
 
 from company.models import Department, Employee
 from company.serializers import DepartmentSerializer, EmployeeSerializer
 
 
-class DepartmentListView(generics.ListAPIView):
+class DepartmentListView(ListAPIView):
     serializer_class = DepartmentSerializer
 
     def get_queryset(self):
@@ -17,12 +22,14 @@ class DepartmentListView(generics.ListAPIView):
         )
 
 
-class EmployeeViewSet(mixins.ListModelMixin,
-                      mixins.DestroyModelMixin,
-                      mixins.CreateModelMixin,
-                      viewsets.GenericViewSet):
+class EmployeeViewSet(ListModelMixin,
+                      DestroyModelMixin,
+                      CreateModelMixin,
+                      GenericViewSet):
 
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [SearchFilter]
     search_fields = ["last_name", "department__id"]
+    permission_classes = [IsAuthenticated]
+    pagination_class = LimitOffsetPagination
