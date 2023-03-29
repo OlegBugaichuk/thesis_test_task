@@ -14,7 +14,7 @@ docker build -t thesis .
 docker run -p 8000:8000 thesis
 ```
 
-- Переходим на [localhost:8000/api/docs/](localhost:8000/api/docs/) или [127.0.0.1:8000](127.0.0.1:8000)
+- Переходим на [localhost:8000/api/docs/](localhost:8000/api/docs/) или [127.0.0.1:8000/api/docs/](127.0.0.1:8000/api/docs/)
 
 ---
 ## Запуск проекта без докера
