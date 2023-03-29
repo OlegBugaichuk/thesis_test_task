@@ -50,7 +50,15 @@ gunicorn core.wsgi:application
 ```
 
 ---
+## Запуск тестов
 
+в каталоге app
+
+```bash
+pytest
+```
+
+---
 ## Дополнительно
 
 Swagger доступен по /api/docs/
