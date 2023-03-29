@@ -1,10 +1,8 @@
+from company.models import Department, Employee
 from django.contrib.auth import get_user_model
-
 from factory import LazyFunction, SubFactory
 from factory.django import DjangoModelFactory
 from faker import Faker
-
-from company.models import Employee, Department
 
 UserModel = get_user_model()
 fake = Faker()
@@ -22,7 +20,7 @@ class UserFactory(DjangoModelFactory):
 class DepartmentFactory(DjangoModelFactory):
     class Meta:
         model = Department
-    
+
     name = LazyFunction(fake.company)
 
 

@@ -1,8 +1,8 @@
 import pytest
+from company.tests.factories import (DepartmentFactory, EmployeeFactory,
+                                     UserFactory)
 from pytest_factoryboy import register
 from rest_framework.test import APIClient
-
-from company.tests.factories import UserFactory, DepartmentFactory, EmployeeFactory
 
 
 @pytest.fixture(autouse=True)
